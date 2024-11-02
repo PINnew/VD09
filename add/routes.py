@@ -22,7 +22,7 @@ def register():
         user = User(username=form.username.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Вы успешно зарегистрировались!')
+        flash('Вы успешно зарегистрировались!', 'success')
         return redirect(url_for('login'))
     return render_template("register.html", form=form)
 
@@ -38,7 +38,7 @@ def login():
             login_user(user)
             return redirect(url_for('index'))
         else:
-            flash('Неверно введены данные аккаунта')
+            flash('Неверно введены данные аккаунта', 'danger')
     return render_template("login.html", form=form)
 
 # Создаём функцию для выхода из аккаунта
