@@ -1,9 +1,7 @@
-
 from app import app, db, bcrypt
 from app.models import User
 from app.forms import LoginForm, RegistrationForm
 from flask_login import login_user, logout_user, current_user, login_required
-
 from flask import render_template, request, redirect, url_for, flash
 
 
@@ -26,7 +24,7 @@ def register():
         db.session.commit()
         flash('Вы успешно зарегистрировались!', 'success')
         return redirect(url_for('login'))
-    return render_template("register.html", form=form)
+    return render_template('register.html', form=form)
 
 # Создаём функцию login
 @app.route('/login', methods=['GET', 'POST'])
@@ -41,7 +39,7 @@ def login():
             return redirect(url_for('index'))
         else:
             flash('Неверно введены данные аккаунта', 'danger')
-    return render_template("login.html", form=form)
+    return render_template('login.html', form=form)
 
 # Создаём функцию для выхода из аккаунта
 @app.route('/logout', methods=['GET', 'POST'])
